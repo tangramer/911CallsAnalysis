@@ -1,4 +1,7 @@
 # final-project
+Xiaojing Xia 
+Nickloas Cardozo
+Runbang Tang
 
 Our final project repository is here: https://github.com/tangramer/final-project.git
 
@@ -25,6 +28,10 @@ What it does: Read 911 calls dataset. If the year(s) are specified, then only th
 	Inputs: raw dataset, year (optional), merge=Y/N (optional)
 	Output: dataframe of selected year, with types merged or not.
 
+
 2.Interactive map visualization of different types of 911 calls
+
 3.Linear regression of specific 911 call type and temperature
+
+Our detailed project proposal is here:https://docs.google.com/document/d/1yjN52TQ4Yr5t3MxTkFJ5rfq4hBzpksk7TKGCctVqVTY/edit?ts=5dbfa164#
 
