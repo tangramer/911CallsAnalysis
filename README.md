@@ -1,6 +1,6 @@
 # final-project
 Xiaojing Xia 
-Nickloas Cardozo
+Nicolas Cardozo
 Runbang Tang
 
 Our final project repository is here: https://github.com/tangramer/final-project.git
