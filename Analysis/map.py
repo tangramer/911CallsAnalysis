@@ -14,7 +14,7 @@ Year, Month, Zone columns are created.
 Four most important types are filtered.
 """
 file1 = "Seattle_Real_Time_Fire_911_Calls.csv"
-data = pd.read_csv(file1, nrows=5000) # nrows is the data number
+data = pd.read_csv(file1, nrows=1000) # nrows is the data number
 
 # Add "Year" and "Mpnth" columns
 data['Year'] = pd.DatetimeIndex(data['Datetime']).year
@@ -36,13 +36,16 @@ conditions = [
     (data['Longitude'] < lon_mean) & (data['Latitude'] < lat_mean)]
 choices = ['NE', 'NW', 'SE', 'SW']
 data['Zone'] = np.select(conditions, choices)
-data
 
+# Select Type
 medic = (data['Type'] == "Medic Response")
 aid = data['Type'] == "Aid Response"
 car = data['Type'] == "MVI - Motor Vehicle Incident"
 fire = data['Type'] == "Auto Fire Alarm"
 df=data[(medic | aid | fire | car)]
+
+# filter out 0 zone values
+df = df[(df['Zone'] == 'NE')|(df['Zone'] == 'NW')|(df['Zone'] == 'SE')|(df['Zone'] == 'SW')]
 
 """
 Interactive map section
@@ -66,7 +69,6 @@ app.layout = html.Div([
         options=[
             {'label': 'Medic Response', 'value': 'Medic Response'},
             {'label': 'MVI - Motor Vehicle Incident', 'value': 'MVI - Motor Vehicle Incident'},
-            {'label': 'Fire in Single Family Res', 'value': 'Fire in Single Family Res'},
             {'label': 'Auto Fire Alarm', 'value': 'Auto Fire Alarm'},
             {'label': 'Aid Response', 'value': 'Aid Response'}
         ],
@@ -81,7 +83,7 @@ app.layout = html.Div([
             {'label': 'SE', 'value': 'SE'},
             {'label': 'SW', 'value': 'SW'}
         ],
-        value='Medic Response'
+        value='NE'
     ),
     html.Label('Month'),
     dcc.Slider(
@@ -91,8 +93,15 @@ app.layout = html.Div([
         value = df['Month'].min(),
         marks = {str(Month): str(Month) for Month in df['Month'].unique()},
         step=None),
+    html.Div([
+        dcc.Graph(
+            id='statistics',
+        )
+    ], style={'width': '49%', 'display': 'inline-block'}),
 ],style={'columnCount': 2})
-     
+          
+
+
 
 layout_map = dict(
     autosize=True,
@@ -131,7 +140,7 @@ def gen_map(map_data):
                 "lat": list(map_data['Latitude']),
                 "lon": list(map_data['Longitude']),
                 "mode": "markers",
-                "name": list(map_data['Type']),
+                "name": list(map_data['Zone']),
                 "marker": {
                     "size": 6,
                     "opacity": 0.7
@@ -151,9 +160,38 @@ def gen_map(map_data):
      Input('month-slider', 'value')])
           
 def update_figure(year,selected_type,selected_zone,month_value):
-    filtered_df = df[(df.Type == selected_type) & (df.Month == month_value) & (df.Zone == selected_zone)]
-    
+    filtered_df = df[(df.Type == selected_type) & (df.Month == month_value) & (df.Year == year) & (df.Zone == selected_zone)]
     return gen_map(filtered_df)
+
+@app.callback(
+    Output('statistics', 'figure'),
+    [Input('year-option', 'value'),
+     Input('type-option', 'value'),
+     Input('month-slider', 'value')])
+
+def update_graph(year,selected_type,month_value):
+    dff = df[(df.Type == selected_type) & (df.Month == month_value) & (df.Year == year)]
+    df_st = dff.Zone.value_counts()
+    df_st = df_st.reset_index()
+
+    return {
+        'data': [dict(
+            x=df_st['index'],
+            y=df_st['Zone'],
+            type = 'bar'
+        )],
+        'layout': dict(
+            xaxis={
+                'title': 'Zone'
+            },
+            yaxis={
+                'title': 'Counts'
+            },
+            hovermode='closest'
+        )
+    }
+
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
