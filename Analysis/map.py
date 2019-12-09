@@ -14,7 +14,7 @@ Year, Month, Zone columns are created.
 Four most important types are filtered.
 """
 file1 = "Seattle_Real_Time_Fire_911_Calls.csv"
-data = pd.read_csv(file1, nrows=1000) # nrows is the data number
+data = pd.read_csv(file1, nrows=100000) # nrows is the data number
 
 # Add "Year" and "Mpnth" columns
 data['Year'] = pd.DatetimeIndex(data['Datetime']).year
@@ -63,17 +63,14 @@ app.layout = html.Div([
                 options=[{'label': i, 'value': i} for i in available_indicators],
                 value=2019
             ),
-    html.Label('Call Type'),
-    dcc.RadioItems(
-        id = 'type-option',
-        options=[
-            {'label': 'Medic Response', 'value': 'Medic Response'},
-            {'label': 'MVI - Motor Vehicle Incident', 'value': 'MVI - Motor Vehicle Incident'},
-            {'label': 'Auto Fire Alarm', 'value': 'Auto Fire Alarm'},
-            {'label': 'Aid Response', 'value': 'Aid Response'}
-        ],
-        value='Medic Response'
-    ),
+    html.Label('Month'),
+    dcc.Slider(
+        id = 'month-slider',
+        min = df['Month'].min(),
+        max = df['Month'].max(),
+        value = df['Month'].min(),
+        marks = {str(Month): str(Month) for Month in df['Month'].unique()},
+        step=None),
     html.Label('Zone'),
     dcc.RadioItems(
         id = 'zone-option',
@@ -85,14 +82,17 @@ app.layout = html.Div([
         ],
         value='NE'
     ),
-    html.Label('Month'),
-    dcc.Slider(
-        id = 'month-slider',
-        min = df['Month'].min(),
-        max = df['Month'].max(),
-        value = df['Month'].min(),
-        marks = {str(Month): str(Month) for Month in df['Month'].unique()},
-        step=None),
+    html.Label('Call Type'),
+    dcc.RadioItems(
+        id = 'type-option',
+        options=[
+            {'label': 'Medic Response', 'value': 'Medic Response'},
+            {'label': 'MVI - Motor Vehicle Incident', 'value': 'MVI - Motor Vehicle Incident'},
+            {'label': 'Auto Fire Alarm', 'value': 'Auto Fire Alarm'},
+            {'label': 'Aid Response', 'value': 'Aid Response'}
+        ],
+        value='Medic Response'
+    ),
     html.Div([
         dcc.Graph(
             id='statistics',
