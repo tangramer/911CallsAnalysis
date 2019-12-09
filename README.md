@@ -1,7 +1,7 @@
 # final-project
-Xiaojing Xia 
-Nicolas Cardozo
-Runbang Tang
+Xiaojing Xia,
+Nicolas Cardozo,
+Runbang Tang,
 
 The project repository can be found here: https://github.com/tangramer/final-project.git
 
