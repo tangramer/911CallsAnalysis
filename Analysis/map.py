@@ -3,26 +3,51 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-
 import pandas as pd
 import plotly.express as px
+import numpy as np
 
 
+"""
+This section import the csv 911 calls.
+Year, Month, Zone columns are created.
+Four most important types are filtered.
+"""
 file1 = "Seattle_Real_Time_Fire_911_Calls.csv"
-data = pd.read_csv(file1, nrows=50000)
+data = pd.read_csv(file1, nrows=5000) # nrows is the data number
+
+# Add "Year" and "Mpnth" columns
 data['Year'] = pd.DatetimeIndex(data['Datetime']).year
-year2019 = data['Year'] == 2019
-test=data[year2019]
-test['Month'] = pd.DatetimeIndex(test['Datetime']).month
-available_indicators = test['Year'].unique()
-
-medic = data['Type'] == "Medic Response"
-car_fire = data['Type'] == "Car Fire"
-brush_fire = data['Type'] == "Brush Fire"
-auto_fire = data['Type'] == "Fire in Single Family Res"
-#test=data[auto_fire | car_fire | brush_fire]
+year2019 = data['Year'] == 2019 
+#data=data[year2019] # in this demo only 2019 data are selected
+data['Month'] = pd.DatetimeIndex(data['Datetime']).month
+available_indicators = data['Year'].unique()
 
 
+# Seattle center
+lat_mean = 47.608013
+lon_mean = -122.335167
+
+# Add Zone column
+conditions = [
+    (data['Longitude'] >= lon_mean) & (data['Latitude'] >= lat_mean),
+    (data['Longitude'] < lon_mean) & (data['Latitude'] >= lat_mean),
+    (data['Longitude'] >= lon_mean) & (data['Latitude'] < lat_mean),
+    (data['Longitude'] < lon_mean) & (data['Latitude'] < lat_mean)]
+choices = ['NE', 'NW', 'SE', 'SW']
+data['Zone'] = np.select(conditions, choices)
+data
+
+medic = (data['Type'] == "Medic Response")
+aid = data['Type'] == "Aid Response"
+car = data['Type'] == "MVI - Motor Vehicle Incident"
+fire = data['Type'] == "Auto Fire Alarm"
+df=data[(medic | aid | fire | car)]
+
+"""
+Interactive map section
+Define the layout and callback functions
+"""
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
@@ -47,13 +72,24 @@ app.layout = html.Div([
         ],
         value='Medic Response'
     ),
+    html.Label('Zone'),
+    dcc.RadioItems(
+        id = 'zone-option',
+        options=[
+            {'label': 'NE', 'value': 'NE'},
+            {'label': 'NW', 'value': 'NW'},
+            {'label': 'SE', 'value': 'SE'},
+            {'label': 'SW', 'value': 'SW'}
+        ],
+        value='Medic Response'
+    ),
     html.Label('Month'),
     dcc.Slider(
         id = 'month-slider',
-        min = test['Month'].min(),
-        max = test['Month'].max(),
-        value = test['Month'].min(),
-        marks = {str(Month): str(Month) for Month in test['Month'].unique()},
+        min = df['Month'].min(),
+        max = df['Month'].max(),
+        value = df['Month'].min(),
+        marks = {str(Month): str(Month) for Month in df['Month'].unique()},
         step=None),
 ],style={'columnCount': 2})
      
@@ -111,12 +147,12 @@ def gen_map(map_data):
     Output('map-graph', 'figure'),
     [Input('year-option', 'value'),
      Input('type-option', 'value'),
+     Input('zone-option', 'value'),
      Input('month-slider', 'value')])
           
-def update_figure(year,selected_type,month_value):
-    filtered_df = test[test.Type == selected_type]
-    filtered_df = filtered_df[test.Month == month_value]
-
+def update_figure(year,selected_type,selected_zone,month_value):
+    filtered_df = df[(df.Type == selected_type) & (df.Month == month_value) & (df.Zone == selected_zone)]
+    
     return gen_map(filtered_df)
 
 if __name__ == '__main__':
