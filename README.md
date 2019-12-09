@@ -9,11 +9,11 @@ Presentation slides are here: https://docs.google.com/presentation/d/1QlV3RJOhp-
 
 1) Functional specification:
 
-       User Input: Users of different backgrounds can selectively browse 911 call data they are interested in, in various 	 parts of Seattle. For example, users can choose to show fire alarm 911 calls which might be more interesting to people        in the firefighting department. Officials from hospitals might be more curious on the 911 medic response data for medic        response to try to redistribute their forces according to the geographical patterns in seattle. 
+      User Input: Users of different backgrounds can selectively browse 911 call data they are interested in, in various parts of Seattle. For example, users can choose to show fire alarm 911 calls which might be more interesting to people in the firefighting department. Officials from hospitals might be more curious on the 911 medic response data for medic        response to try to redistribute their forces according to the geographical patterns in seattle. 
        
-       Users will be able to track the changes by selecting time/date.
+      Users will be able to track the changes by selecting time/date.
    
-       Use Case: Users can select two main  data to show:
+      Use Case: Users can select two main  data to show:
   		1) 911 calls distributions of different types on a Seattle map
   		2) Statistic data of blocks / communities
   		3) Divide Seattle into blocks. Add the block code column to the dataframe. Later analysis is based on incident                    numbers in a block (e.g. the sum fire incidents in a block vs. the average temperature in the same block)
