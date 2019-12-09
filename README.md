@@ -27,13 +27,6 @@ Presentation slides are here: https://docs.google.com/presentation/d/1QlV3RJOhp-
       1.2) Remove unnecessary data (e.g. incident number)
 	  
       1.3) Divide Seattle into blocks. Add the block code column to the dataframe. Later analysis is based on incident                    numbers in a block (e.g. the sum fire incidents in a block vs. the average temperature in the same block)
-           
-	   
-	  1.1 ReadCalls
-               Name: ReadCalls(data, year (optional), merge similar types or not)
-               What it does: Read 911 calls dataset. If the year(s) are specified, then only the calls of certain years will                  be included. Otherwise it reads all the data from the dataset. If choose to merge similar call types, calls                    such as “brush fire”, “car fire”, “house fire” will be labelled as a new general type “fire”. If this is not                  specified, call types will not be modified.
-	         Inputs: raw dataset, year (optional), merge=Y/N (optional)
-	         Output: dataframe of selected year, with types merged or not.
 
 
 3) Interactive map visualization of different types of 911 calls
