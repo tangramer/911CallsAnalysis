@@ -14,11 +14,9 @@ Presentation slides are here: https://docs.google.com/presentation/d/1QlV3RJOhp-
       Users will be able to track the changes by selecting time/date.
    
       Use Case: Users can select two main  data to show:
-  		1) 911 calls distributions of different types on a map of Seattle
-  		
-	2) Statistic data of blocks / communities
-  	
-	3) Divide Seattle into blocks. Add the block code column to the dataframe. Later analysis is based on incident                    numbers in a block (e.g. the sum fire incidents in a block vs. the average temperature in the same block)
+  		1) 911 calls distributions of different types on a map of Seattle	
+		2) Statistic data of blocks / communities
+  		3) Divide Seattle into blocks. Add the block code column to the dataframe. Later analysis is based on incident                    numbers in a block (e.g. the sum fire incidents in a block vs. the average temperature in the same block)
 
 
 2) Component specification:
