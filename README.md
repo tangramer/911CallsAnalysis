@@ -6,7 +6,7 @@ Xiaojing Xia, Nicolas Cardozo, Runbang Tang
 
 ##### Table of Contents  
 [Headers](#headers)  
-[Emphasis](#emphasis)  
+[Analysis](#analysis)  
 ...snip...    
 <a name="headers"/>
 ## Headers
@@ -34,6 +34,7 @@ Table of contents
      * [Public](#public)
 <!--te-->
 # Directory Structure
+<b name="analysis"/>
 ## Analysis:
 This directory holds the code to prepare the data from multiple sources for analysis and analyze the data. It also contains the module files for data cleaning process and ipython notebook files to demonstrate functionality.
 ## doc:
