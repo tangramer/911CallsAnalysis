@@ -15,7 +15,7 @@ Table of contents
 =================
 
 <!--ts-->
-   * [gh-md-toc](#gh-md-toc)
+   * [doc](#doc)
    * [Table of contents](#table-of-contents)
    * [Installation](#installation)
    * [Usage](#usage)
@@ -37,6 +37,8 @@ Table of contents
 <b name="analysis"/>
 ## Analysis:
 This directory holds the code to prepare the data from multiple sources for analysis and analyze the data. It also contains the module files for data cleaning process and ipython notebook files to demonstrate functionality.
+doc
+=================
 ## doc:
 This directory holds the presentation slides for the final project and also files that explained the detailed specification of the analysis tools. 
 ## examples:
