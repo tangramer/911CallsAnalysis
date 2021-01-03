@@ -11,6 +11,12 @@ This directory holds the file for the examples to show the potentail analysis th
 ## project data:
 This directory holds the two data files used in the project.
 
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
