@@ -12,11 +12,11 @@ Table of contents
    * [Analysis](#analysis)
    * [Doc](#doc)
    * [Examples](#examples)
-   * [Project Data](#projectdata)
+   * [Project Data](#project-data)
    * [Contributing](#contributing)
    * [License](#license)
 <!--te-->
-# Directory Structure
+
 Analysis
 ================
 This directory holds the code to prepare the data from multiple sources for analysis and analyze the data. It also contains the module files for data cleaning process and ipython notebook files to demonstrate functionality.
