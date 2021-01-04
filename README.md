@@ -1,8 +1,13 @@
 
 
 # 911CallsAnalysis
+
+<img src="doc/911callslogo.png" align="right">
+
 911 calls data analysis tools for CSE583 final project
 Xiaojing Xia, Nicolas Cardozo, Runbang Tang
+
+
 
 Table of contents
 =================
