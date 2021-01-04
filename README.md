@@ -29,7 +29,7 @@ This directory holds the code to prepare the data from multiple sources for anal
 
 Project Data
 =================
-This directory holds the [data files](project data) used in the project. 
+This directory holds the data files used in the project. 
 
 Examples
 =================
