@@ -34,10 +34,15 @@ This directory holds the two data files used in the project.
 Examples
 =================
 This directory holds the file for the examples to show the potentail analysis that can be done by the analysis tools. It can serve as a user guide.
+The example analyses of this tool are as follows:
 
-<img src="examples/Map_Data/UWcloselook.gif" width="500"/>
+Example 1: the analysis tool is able to visualize different types of 911 calls and their distribution on Seattle area
 
-<img src="examples/analysisovertimes.gif" width="500"/>
+![](examples/Map_Data/UWcloselook.gif)
+
+Example 2: the analysis tool is able to visualize different types of 911 calls and their distribution on over time
+
+<img src="examples/analysisovertimes.gif" width="600"/>
 
 Doc
 =================
