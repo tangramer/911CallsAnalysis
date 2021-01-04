@@ -34,7 +34,9 @@ Examples
 =================
 This directory holds the file for the examples to show the potentail analysis that can be done by the analysis tools. It can serve as a user guide.
 
-![](examples/Map_Data/UWcloselook.gif)
+<img src="examples/Map_Data/UWcloselook.gif" width="500"/>
+
+<img src="examples/analysisovertimes.gif" width="500"/>
 
 Project Data
 =================
