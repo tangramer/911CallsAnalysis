@@ -16,9 +16,9 @@ Table of contents
 <!--ts-->
    * [Table of contents](#table-of-contents)
    * [Analysis](#analysis)
-   * [Doc](#doc)
-   * [Examples](#examples)
    * [Project Data](#project-data)
+   * [Examples](#examples)
+   * [Doc](#doc)
    * [Contributing](#contributing)
    * [License](#license)
 <!--te-->
@@ -27,9 +27,9 @@ Analysis
 ================
 This directory holds the code to prepare the data from multiple sources for analysis and analyze the data. It also contains the module files for data cleaning process and ipython notebook files to demonstrate functionality.
 
-Doc
+Project Data
 =================
-This directory holds the presentation slides for the final project and also files that explained the detailed specification of the analysis tools. 
+This directory holds the two data files used in the project. 
 
 Examples
 =================
@@ -39,9 +39,9 @@ This directory holds the file for the examples to show the potentail analysis th
 
 <img src="examples/analysisovertimes.gif" width="500"/>
 
-Project Data
+Doc
 =================
-This directory holds the two data files used in the project.
+This directory holds the presentation slides for the final project and also files that explained the detailed specification of the analysis tools.
 
 Contributing
 =================
