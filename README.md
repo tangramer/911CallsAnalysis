@@ -34,6 +34,8 @@ Examples
 =================
 This directory holds the file for the examples to show the potentail analysis that can be done by the analysis tools. It can serve as a user guide.
 
+![](examples/Map_Data/UWcloselook.gif)
+
 Project Data
 =================
 This directory holds the two data files used in the project.
