@@ -4,9 +4,10 @@
 
 <img src="doc/911callslogo.png" align="right">
 
-911 calls data analysis tools for CSE583 final project
-Xiaojing Xia, Nicolas Cardozo, Runbang Tang
 
+Runbang Tang, Xiaojing Xia, Nicolas Cardozo
+
+This is a project to visualize and analyze the relationship between different types of 911 calls and Seattle location or weather information. The goal of this project is to help better deploy specific police forces to deal with corresponding cases according to 911 calls of different types' distribution across Seattle area.
 
 
 Table of contents
